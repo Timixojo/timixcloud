@@ -1,0 +1,579 @@
+/* =========================================================
+   TIMIXCLOUD - MAIN STYLESHEET
+   ========================================================= */
+
+
+/* ---------- Base ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #0f172a;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ---------- Navigation ---------- */
+
+header {
+    background: #06182a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar {
+    width: 100%;
+    max-width: 1600px;
+    min-height: 105px;
+    margin: 0 auto;
+    padding: 18px 4.5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand .logo {
+    display: block;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.brand p {
+    margin-top: 7px;
+    color: #60a5fa;
+    font-size: 0.9rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    font-size: 1.05rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #38a8ff;
+}
+
+
+/* ---------- Hero ---------- */
+
+.hero {
+    min-height: 610px;
+    background: #06182a;
+
+    display: grid;
+    grid-template-columns: 48% 52%;
+    align-items: stretch;
+
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 70px 5% 70px 7%;
+}
+
+.eyebrow {
+    max-width: 650px;
+    margin-bottom: 24px;
+
+    color: #38a8ff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    line-height: 1.7;
+}
+
+.hero h1 {
+    max-width: 720px;
+    margin-bottom: 26px;
+
+    color: #ffffff;
+    font-size: clamp(3.2rem, 4.5vw, 5.2rem);
+    font-weight: 700;
+    line-height: 1.03;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: #2196f3;
+}
+
+.hero-description {
+    max-width: 620px;
+    margin-bottom: 30px;
+
+    color: #d7e2ed;
+    font-size: 1.08rem;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    padding: 11px 23px;
+
+    border: 1px solid #2196f3;
+    border-radius: 7px;
+
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.hero-buttons a:first-child {
+    background: #2196f3;
+}
+
+.hero-buttons a:hover {
+    background: #ffffff;
+    color: #06182a;
+    border-color: #ffffff;
+}
+
+
+/* ---------- Hero Workstation Image ---------- */
+
+.hero-image {
+    position: relative;
+    min-width: 0;
+    min-height: 610px;
+    overflow: hidden;
+}
+
+.hero-image img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+    object-position: 60% center;
+}
+
+/* Blend image into the navy hero */
+.hero-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        90deg,
+        #06182a 0%,
+        rgba(6, 24, 42, 0.92) 4%,
+        rgba(6, 24, 42, 0.55) 12%,
+        rgba(6, 24, 42, 0.12) 23%,
+        rgba(6, 24, 42, 0) 34%
+    );
+}
+
+
+/* ---------- Shared Sections ---------- */
+
+.about,
+.technologies,
+.projects,
+.contact {
+    padding: 85px 8%;
+}
+
+.section-heading {
+    margin-bottom: 38px;
+}
+
+.section-heading > p {
+    margin-bottom: 8px;
+
+    color: #2196f3;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.section-heading h2 {
+    color: #0f172a;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+}
+
+
+/* ---------- About ---------- */
+
+.about {
+    background: #ffffff;
+}
+
+.about-content {
+    max-width: 850px;
+}
+
+.about-content p {
+    margin-bottom: 18px;
+
+    color: #475569;
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+
+/* ---------- Technologies ---------- */
+
+.technologies {
+    background: #f5f8fc;
+}
+
+.technology-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.technology-card {
+    padding: 28px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.technology-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+}
+
+.technology-card h3 {
+    margin-bottom: 10px;
+
+    color: #0f172a;
+    font-size: 1.25rem;
+}
+
+.technology-card p {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+
+/* ---------- Projects ---------- */
+
+.projects {
+    background: #06182a;
+}
+
+.projects .section-heading h2 {
+    color: #ffffff;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.project-card {
+    padding: 32px;
+
+    background: #0c2238;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.project-type {
+    margin-bottom: 12px;
+
+    color: #38a8ff !important;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.project-card h3 {
+    margin-bottom: 12px;
+
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.project-card p {
+    margin-bottom: 18px;
+
+    color: #cbd5e1;
+    line-height: 1.7;
+}
+
+.project-card a {
+    color: #38a8ff;
+    font-weight: 600;
+}
+
+.project-card a:hover {
+    color: #ffffff;
+}
+
+.project-card span {
+    color: #94a3b8;
+}
+
+
+/* ---------- Contact ---------- */
+
+.contact {
+    background: #ffffff;
+}
+
+.contact > p {
+    margin-bottom: 25px;
+
+    color: #475569;
+    font-size: 1.08rem;
+}
+
+.contact-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.contact-links a {
+    padding-bottom: 4px;
+
+    color: #0f172a;
+    font-weight: 600;
+    border-bottom: 2px solid #2196f3;
+
+    transition: color 0.2s ease;
+}
+
+.contact-links a:hover {
+    color: #2196f3;
+}
+
+
+/* ---------- Footer ---------- */
+
+footer {
+    padding: 28px 6%;
+
+    background: #020d18;
+    color: #94a3b8;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 1050px) {
+
+    .navbar {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .nav-links {
+        gap: 30px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding: 80px 8% 60px;
+    }
+
+    .hero h1 {
+        max-width: 800px;
+        font-size: clamp(3.2rem, 8vw, 5rem);
+    }
+
+    .hero-description {
+        max-width: 700px;
+    }
+
+    .hero-image {
+        min-height: 520px;
+    }
+
+    .hero-image img {
+        object-position: center;
+    }
+
+    .hero-image::before {
+        background: linear-gradient(
+            180deg,
+            #06182a 0%,
+            rgba(6, 24, 42, 0.75) 8%,
+            rgba(6, 24, 42, 0.15) 22%,
+            rgba(6, 24, 42, 0) 35%
+        );
+    }
+
+    .technology-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        min-height: auto;
+        padding-top: 22px;
+        padding-bottom: 22px;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .brand .logo {
+        font-size: 1.7rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        gap: 18px 24px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+    }
+
+    .hero-content {
+        padding: 65px 6% 45px;
+    }
+
+    .eyebrow {
+        margin-bottom: 20px;
+
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+    }
+
+    .hero h1 {
+        margin-bottom: 23px;
+
+        font-size: clamp(2.7rem, 13vw, 3.6rem);
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        margin-bottom: 27px;
+
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+    }
+
+    .hero-image {
+        min-height: 350px;
+    }
+
+    .hero-image img {
+        object-position: 58% center;
+    }
+
+    .about,
+    .technologies,
+    .projects,
+    .contact {
+        padding: 65px 6%;
+    }
+
+    .technology-grid,
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-links {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* ---------- Very Small Phones ---------- */
+
+@media (max-width: 420px) {
+
+    .hero h1 {
+        font-size: 2.55rem;
+    }
+
+    .hero-image {
+        min-height: 300px;
+    }
+
+    .section-heading h2 {
+        font-size: 2rem;
+    }
+}
