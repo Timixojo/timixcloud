@@ -338,6 +338,17 @@ header {
     letter-spacing: 2px;
 }
 
+.project-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #38a8ff;
+    border-radius: 20px;
+    color: #38a8ff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
 .project-card h3 {
     margin-bottom: 12px;
 
