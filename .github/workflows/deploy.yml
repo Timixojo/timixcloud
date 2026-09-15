@@ -1,0 +1,65 @@
+name: Deploy TimixCloud to EC2
+
+on:
+  push:
+    branches:
+      - production
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout production source
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-north-1
+
+      - name: Get GitHub runner public IP
+        id: runner-ip
+        run: |
+          RUNNER_IP=$(curl -s https://checkip.amazonaws.com)
+          echo "ip=$RUNNER_IP" >> "$GITHUB_OUTPUT"
+          echo "GitHub runner IP: $RUNNER_IP"
+
+      - name: Temporarily allow SSH from GitHub runner
+        run: |
+          aws ec2 authorize-security-group-ingress \
+            --group-id sg-034e5ffdbb49fb085 \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.runner-ip.outputs.ip }}/32
+
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/timixcloud_deploy
+          chmod 600 ~/.ssh/timixcloud_deploy
+          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy TimixCloud to EC2
+        run: |
+          rsync -av --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.gitignore' \
+            --exclude='README.md' \
+            -e "ssh -i ~/.ssh/timixcloud_deploy" \
+            ./ "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/timixcloud.uk/"
+
+      - name: Remove temporary SSH access
+        if: always()
+        run: |
+          aws ec2 revoke-security-group-ingress \
+            --group-id sg-034e5ffdbb49fb085 \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.runner-ip.outputs.ip }}/32
